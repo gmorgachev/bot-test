@@ -32,7 +32,7 @@
 </head>
 <body>
     <div>
-        <h1>Chat with LLM 1</h1>
+        <h1>Chat with LLM</h1>
         <textarea id="userInput" placeholder="Type your message here..."></textarea>
         <button id="sendButton">Send</button>
         <div id="response"></div>
@@ -60,9 +60,9 @@
                 const userMessage = userInput.value;
                 log(`User: ${userMessage}`);
 
-                // Make request to LLM API
+                // Make request to LLM API using CORS proxy
                 try {
-                    const response = await fetch('http://34.171.235.205:8080/v1/chat/completions', {
+                    const response = await fetch('https://cors-anywhere.herokuapp.com/http://34.171.235.205:8080/v1/chat/completions', {
                         method: 'POST',
                         headers: {
                             'accept': 'application/json',
