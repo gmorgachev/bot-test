@@ -32,7 +32,7 @@
 </head>
 <body>
     <div>
-        <h1>Chat with LLM</h1>
+        <h1>Chat with LLM 1</h1>
         <textarea id="userInput" placeholder="Type your message here..."></textarea>
         <button id="sendButton">Send</button>
         <div id="response"></div>
@@ -43,15 +43,18 @@
     </div>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
-        Telegram.WebApp.onEvent('ready', function() {
+        function log(message) {
+            const logOutput = document.getElementById('logOutput');
+            logOutput.textContent += message + '\n';
+            console.log(message);
+        }
+
+        function initializeApp() {
+            log("Initializing Telegram Web App...");
+
             const sendButton = document.getElementById('sendButton');
             const userInput = document.getElementById('userInput');
             const responseDiv = document.getElementById('response');
-            const logOutput = document.getElementById('logOutput');
-
-            function log(message) {
-                logOutput.textContent += message + '\n';
-            }
 
             sendButton.addEventListener('click', async () => {
                 const userMessage = userInput.value;
@@ -98,6 +101,13 @@
                     log(`Error: ${error.message}`);
                 }
             });
+
+            log("Event listeners attached.");
+        }
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            log("DOM fully loaded and parsed.");
+            initializeApp();
         });
     </script>
 </body>
